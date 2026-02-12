@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Business Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .col {
+            flex: 1;
+        }
+        
+        .country-select {
+            background-color: white;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group label {
+            display: inline;
+            font-weight: normal;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .required:after {
+            content: " *";
+            color: red;
+        }
+        
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>E-Commerce Business Registration</h1>
+        <p class="subtitle">Start your online business today</p>
+        
+        <form id="registrationForm" onsubmit="return validateForm(event)">
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label class="required" for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="required" for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="required" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business Information -->
+            <div class="form-group">
+                <label class="required" for="businessName">Business Name</label>
+                <input type="text" id="businessName" name="businessName" placeholder="Enter your business name" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="businessType">Business Type</label>
+                <select id="businessType" name="businessType" required>
+                    <option value="">Select business type</option>
+                    <option value="retail">Retail</option>
+                    <option value="wholesale">Wholesale</option>
+                    <option value="dropshipping">Dropshipping</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="services">Services</option>
+                </select>
+            </div>
+            
+            <!-- Country of Origin - Customer should also select this -->
+            <div class="form-group">
+                <label class="required" for="country">Country of Origin</label>
+                <select id="country" name="country" class="country-select" required>
+                    <option value="">Select your country</option>
+                    <option value="USA">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <!-- Business Address -->
+            <div class="form-group">
+                <label class="required" for="address">Business Address</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter your business address" required></textarea>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="required" for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="City" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="state">State/Province</label>
+                        <input type="text" id="state" name="state" placeholder="State/Province">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="required" for="postalCode">Postal Code</label>
+                        <input type="text" id="postalCode" name="postalCode" placeholder="Postal code" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Information -->
+            <div class="form-group">
+                <label for="website">Website URL (Optional)</label>
+                <input type="url" id="website" name="website" placeholder="https://yourwebsite.com">
+            </div>
+            
+            <!-- Terms and Conditions -->
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" style="color: #667eea;">Terms and Conditions</a> and <a href="#" style="color: #667eea;">Privacy Policy</a></label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Subscribe to our newsletter for updates and offers</label>
+                </div>
+            </div>
+            
+            <button type="submit">Register Your Business</button>
+        </form>
+        
+        <div id="successMessage" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; color: #155724; border-radius: 5px; text-align: center;">
+            <strong>Success!</strong> Your business registration has been submitted successfully.
+        </div>
+    </div>
+    
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const businessName = document.getElementById('businessName').value;
+            const businessType = document.getElementById('businessType').value;
+            const country = document.getElementById('country').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Simple validation
+            if (!fullName || !email || !phone || !businessName || !businessType || !country || !terms) {
+                alert('Please fill in all required fields and agree to terms.');
+                return false;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            
+            // Phone validation (basic)
+            const phonePattern = /^[\d\s\+\-\(\)]{10,}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Please enter a valid phone number.');
+                return false;
+            }
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // Optional: Clear form
+            // document.getElementById('registrationForm').reset();
+            
+            return false; // Prevent actual form submission
+        }
+    </script>
+</body>
+</html>
